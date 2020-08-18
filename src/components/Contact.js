@@ -34,9 +34,6 @@ function Contact() {
 
   const deliver = (e) => {
     e.preventDefault();
-    console.log('deliver sender: ', sender);
-    console.log('deliver address: ', address);
-    console.log('deliver message: ', message);
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -55,7 +52,7 @@ function Contact() {
     };
 
     fetch(`${serverURL}/sendmail`, requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error));
   };
