@@ -12,11 +12,6 @@ import theme from './components/UI/Theme';
 import { ThemeProvider } from '@material-ui/styles';
 
 function App() {
-  const serverURL =
-    process.env.NODE_ENV === 'production'
-      ? process.env.REACT_APP_SERVER_PRODUCTION
-      : process.env.REACT_APP_SERVER_DEVELOPMENT;
-
   return (
     <>
       <ThemeProvider theme={theme}>
