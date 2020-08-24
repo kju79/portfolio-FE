@@ -111,11 +111,11 @@ function Contact() {
                   color="secondary"
                   href="#outlined-buttons"
                 >
-<Input type="submit">
+<input type="submit">
                   <Typography variant="h6" className={classes.button}>
                     send your message
                   </Typography>
-</Input>
+</input>
                 </Button>
               </div>
             </div>
