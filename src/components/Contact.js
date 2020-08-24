@@ -69,33 +69,36 @@ function Contact() {
             <div className="bg col" style={{ textAlign: 'center' }}>
               <div className="col">
                 <div>
-                  <input required
+                  <input
                     value={sender}
                     onChange={(event) => setSender(event.target.value)}
                     // onChange={(event) => console.log(event.target.value)}
                     name="sender"
                     type="text"
                     placeholder="Your name"
+                    required
                   />
                 </div>
                 <div>
-                  <input required
+                  <input 
                     type="email"
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
                     name="address"
                     placeholder="Your email-address"
+                    required
                   />
                 </div>
               </div>
 
               <div>
                 <div>
-                  <textarea required
+                  <textarea
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     name="message"
                     placeholder="What would you like to tell me ?"
+                    required
                   />
                 </div>
               </div>
