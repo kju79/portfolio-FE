@@ -99,19 +99,18 @@ function Contact() {
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     name="message"
-                    placeholder="What would you like to tell me ?"
+                    placeholder="What would you like to tell mee ?"
                     required
                   />
                 </div>
               </div>
               <div>
-                <Button
-                  
+                <Button                  
                   variant="contained"
                   color="secondary"
                   href="#outlined-buttons"
                 >
-<input type="submit">
+                  <input type="submit">
                   <Typography variant="h6" className={classes.button}>
                     send your message
                   </Typography>
