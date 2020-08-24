@@ -69,7 +69,7 @@ function Contact() {
             <div className="bg col" style={{ textAlign: 'center' }}>
               <div className="col">
                 <div>
-                  <input
+                  <input required
                     value={sender}
                     onChange={(event) => setSender(event.target.value)}
                     // onChange={(event) => console.log(event.target.value)}
@@ -79,8 +79,8 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <input
-                    type="text"
+                  <input required
+                    type="email"
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
                     name="address"
@@ -91,7 +91,7 @@ function Contact() {
 
               <div>
                 <div>
-                  <textarea
+                  <textarea required
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     name="message"
