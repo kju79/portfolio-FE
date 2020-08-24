@@ -104,7 +104,7 @@ function Contact() {
               </div>
               <div>
                 <Button
-                  onClick={deliver}
+                  type="submit"
                   variant="contained"
                   color="secondary"
                   href="#outlined-buttons"
