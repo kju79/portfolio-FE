@@ -34,6 +34,8 @@ function Contact() {
 
   const deliver = (e) => {
     e.preventDefault();
+    
+    console.log("submit clicked");
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
