@@ -106,14 +106,16 @@ function Contact() {
               </div>
               <div>
                 <Button
-                  type="submit"
+                  
                   variant="contained"
                   color="secondary"
                   href="#outlined-buttons"
                 >
+<Input type="submit">
                   <Typography variant="h6" className={classes.button}>
                     send your message
                   </Typography>
+</Input>
                 </Button>
               </div>
             </div>
