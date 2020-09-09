@@ -19,42 +19,75 @@ function Contact() {
     },
   }));
 
+  let check = 0;
+
   const [sender, setSender] = useState('');
   const [address, setAddress] = useState('');
   const [message, setMessage] = useState('');
+  const [senderError, setSenderError] = useState('');
+  const [addressError, setAddressError] = useState('');
+  const [messageError, setMessageError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(0);
 
   const serverURL =
     process.env.NODE_ENV === 'production'
       ? process.env.REACT_APP_SERVER_PRODUCTION
       : process.env.REACT_APP_SERVER_DEVELOPMENT;
 
-  console.log('mode: ', process.env.NODE_ENV);
-
-  console.log('server: ', serverURL);
-
   const deliver = (e) => {
     e.preventDefault();
 
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    const regAddress = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const regSender = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
-    var raw = JSON.stringify({
-      name: sender,
-      email: address,
-      message: message,
-    });
+    if (!address.match(regAddress)) {
+      setAddressError(true);
+    } else check++;
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-    };
+    if (!sender.match(regSender)) {
+      setSenderError(true);
+    } else check++;
 
-    fetch(`${serverURL}/sendmail`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
+    if (message.length <= 10) {
+      setMessageError(true);
+    } else check++;
+
+    if (check === 3) {
+      
+      console.log('All fields have been checked');
+
+      if (!messageError && !addressError && !senderError) {
+        console.log('All fields are GOOD');
+        setIsSuccess(1);
+
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        var raw = JSON.stringify({
+          name: sender,
+          email: address,
+          message: message,
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow',
+        };
+
+        fetch(`${serverURL}/sendmail`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => console.log(result))
+          .catch((error) => console.log('error', error.message));
+      } else {
+        console.log('there was an error // resetting fields');
+
+        setAddressError(false);
+        setMessageError(false);
+        setSenderError(false);
+      }
+    }
   };
 
   const classes = useStyles();
@@ -65,7 +98,7 @@ function Contact() {
         <div className="content960 col">
           <div id="NewChapter">contact me</div>
 
-          <form onSubmit={deliver}>
+          <form name="contact" onSubmit={deliver}>
             <div className="bg col" style={{ textAlign: 'center' }}>
               <div className="col">
                 <div>
@@ -76,17 +109,26 @@ function Contact() {
                     name="sender"
                     type="text"
                     placeholder="Your name"
+                    required
                   />
                 </div>
+                {senderError ? <div id="error">Is it a real name?</div> : ''}
+
                 <div>
                   <input
-                    type="text"
+                    type="email"
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
                     name="address"
                     placeholder="Your email-address"
+                    required
                   />
                 </div>
+                {addressError ? (
+                  <div id="error">You must provide a valid email-address.</div>
+                ) : (
+                  ''
+                )}
               </div>
 
               <div>
@@ -96,21 +138,29 @@ function Contact() {
                     onChange={(event) => setMessage(event.target.value)}
                     name="message"
                     placeholder="What would you like to tell me ?"
+                    required
                   />
                 </div>
+                {messageError ? (
+                  <div id="error">
+                    Your text must contain more than 10 characters.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
-              <div>
-                <Button
-                  onClick={deliver}
-                  variant="contained"
-                  color="secondary"
-                  href="#outlined-buttons"
-                >
+              <div id="submit">
+                <Button type="submit" variant="contained" color="secondary">
                   <Typography variant="h6" className={classes.button}>
                     send your message
                   </Typography>
                 </Button>
               </div>
+              {isSuccess ? (
+                <div id="success">Your email was sent. Thank you</div>
+              ) : (
+                ''
+              )}
             </div>
           </form>
         </div>
