@@ -22,22 +22,73 @@ function Contact() {
   const [sender, setSender] = useState('');
   const [address, setAddress] = useState('');
   const [message, setMessage] = useState('');
+  const [senderError, setSenderError] = useState(false);
+  const [addressError, setAddressError] = useState(false);
+  const [messageError, setMessageError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(0);
 
   const serverURL =
     process.env.NODE_ENV === 'production'
       ? process.env.REACT_APP_SERVER_PRODUCTION
       : process.env.REACT_APP_SERVER_DEVELOPMENT;
 
-  console.log('mode: ', process.env.NODE_ENV);
+  const initialize = () => {
+    setSenderError(false);
+    setAddressError(false);
+    setMessageError(false);
+    setIsSuccess(false);
+  };
 
-  console.log('server: ', serverURL);
+  const checkData = () => {
+    const regAddress = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const regSender = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+
+    // console.log('address from form: ', address);
+    // console.log('sender from form: ', sender);
+    // console.log('message from form: ', message);
+
+    let msgErr = '';
+    let sndErr = '';
+    let addErr = '';
+
+    if (!sender.match(regSender)) {
+      sndErr = 'Please provide your full name';
+      setSenderError(sndErr);
+    }
+
+    if (!address.match(regAddress)) {
+      addErr = 'Invalid email address';
+      setAddressError(addErr);
+    }
+
+    if (message.length <= 10) {
+      msgErr = 'Please enter more than 10 characters';
+      setMessageError(msgErr);
+    }
+
+    if (sndErr || addErr || msgErr) {
+      return false;
+    } else return true;
+  };
 
   const deliver = (e) => {
     e.preventDefault();
     
     console.log("submit clicked");
 
-    var myHeaders = new Headers();
+    initialize();
+
+    const check = checkData();
+    if (check) {
+      setIsSuccess(true);
+      sendMail();
+    } else return;
+
+   
+  };
+
+  const sendMail = () => { 
+     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
     var raw = JSON.stringify({
@@ -53,12 +104,13 @@ function Contact() {
       redirect: 'follow',
     };
 
-    fetch(`${serverURL}/sendmail`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
-  };
-
+      fetch(`${serverURL}/sendmail`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => console.log(result))
+        .catch((error) => console.log('error', error.message));
+    }
+    
+  
   const classes = useStyles();
 
   return (
@@ -67,7 +119,7 @@ function Contact() {
         <div className="content960 col">
           <div id="NewChapter">contact me</div>
 
-          <form onSubmit={deliver}>
+          <form name="contact" onSubmit={deliver}>
             <div className="bg col" style={{ textAlign: 'center' }}>
               <div className="col">
                 <div>
@@ -81,8 +133,12 @@ function Contact() {
                     required
                   />
                 </div>
+                <div id="error">{senderError}</div>
+
                 <div>
-                  <input 
+
+                  <input
+
                     type="email"
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
@@ -91,6 +147,8 @@ function Contact() {
                     required
                   />
                 </div>
+
+                <div id="error">{addressError}</div>
               </div>
 
               <div>
@@ -99,24 +157,30 @@ function Contact() {
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     name="message"
-                    placeholder="What would you like to tell mee ?"
+
+                    placeholder="What would you like to tell me ?"
+
                     required
                   />
                 </div>
+
+                <div id="error">{messageError}</div>
               </div>
-              <div>
-                <Button                  
-                  variant="contained"
-                  color="secondary"
-                  href="#outlined-buttons"
-                >
-                  <input type="submit">
+
+              <div id="submit">
+                <Button type="submit" variant="contained" color="secondary">
+
                   <Typography variant="h6" className={classes.button}>
                     send your message
                   </Typography>
 </input>
                 </Button>
               </div>
+              {isSuccess ? (
+                <div id="success">Your email was sent. Thank you</div>
+              ) : (
+                ''
+              )}
             </div>
           </form>
         </div>
