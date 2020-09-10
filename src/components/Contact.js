@@ -73,6 +73,8 @@ function Contact() {
 
   const deliver = (e) => {
     e.preventDefault();
+    
+    console.log("submit clicked");
 
     initialize();
 
@@ -134,7 +136,9 @@ function Contact() {
                 <div id="error">{senderError}</div>
 
                 <div>
+
                   <input
+
                     type="email"
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
@@ -153,18 +157,23 @@ function Contact() {
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     name="message"
+
                     placeholder="What would you like to tell me ?"
+
                     required
                   />
                 </div>
 
                 <div id="error">{messageError}</div>
               </div>
+
               <div id="submit">
                 <Button type="submit" variant="contained" color="secondary">
+
                   <Typography variant="h6" className={classes.button}>
                     send your message
                   </Typography>
+</input>
                 </Button>
               </div>
               {isSuccess ? (
