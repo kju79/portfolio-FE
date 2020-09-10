@@ -19,14 +19,12 @@ function Contact() {
     },
   }));
 
-  let check = 0;
-
   const [sender, setSender] = useState('');
   const [address, setAddress] = useState('');
   const [message, setMessage] = useState('');
-  const [senderError, setSenderError] = useState('');
-  const [addressError, setAddressError] = useState('');
-  const [messageError, setMessageError] = useState('');
+  const [senderError, setSenderError] = useState(false);
+  const [addressError, setAddressError] = useState(false);
+  const [messageError, setMessageError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(0);
 
   const serverURL =
@@ -34,62 +32,83 @@ function Contact() {
       ? process.env.REACT_APP_SERVER_PRODUCTION
       : process.env.REACT_APP_SERVER_DEVELOPMENT;
 
+  const initialize = () => {
+    setSenderError(false);
+    setAddressError(false);
+    setMessageError(false);
+    setIsSuccess(false);
+  };
+
+  const checkData = () => {
+    const regAddress = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const regSender = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+
+    // console.log('address from form: ', address);
+    // console.log('sender from form: ', sender);
+    // console.log('message from form: ', message);
+
+    let msgErr = '';
+    let sndErr = '';
+    let addErr = '';
+
+    if (!sender.match(regSender)) {
+      sndErr = 'Please provide your full name';
+      setSenderError(sndErr);
+    }
+
+    if (!address.match(regAddress)) {
+      addErr = 'Invalid email address';
+      setAddressError(addErr);
+    }
+
+    if (message.length <= 10) {
+      msgErr = 'Please enter more than 10 characters';
+      setMessageError(msgErr);
+    }
+
+    if (sndErr || addErr || msgErr) {
+      return false;
+    } else return true;
+  };
+
   const deliver = (e) => {
     e.preventDefault();
 
-    const regAddress = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const regSender = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+    initialize();
 
-    if (!address.match(regAddress)) {
-      setAddressError(true);
-    } else check++;
+    const check = checkData();
+    if (check) {
+      setIsSuccess(true);
+      sendMail();
+    } else return;
 
-    if (!sender.match(regSender)) {
-      setSenderError(true);
-    } else check++;
-
-    if (message.length <= 10) {
-      setMessageError(true);
-    } else check++;
-
-    if (check === 3) {
-      
-      console.log('All fields have been checked');
-
-      if (!messageError && !addressError && !senderError) {
-        console.log('All fields are GOOD');
-        setIsSuccess(1);
-
-        var myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-
-        var raw = JSON.stringify({
-          name: sender,
-          email: address,
-          message: message,
-        });
-
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow',
-        };
-
-        fetch(`${serverURL}/sendmail`, requestOptions)
-          .then((response) => response.json())
-          .then((result) => console.log(result))
-          .catch((error) => console.log('error', error.message));
-      } else {
-        console.log('there was an error // resetting fields');
-
-        setAddressError(false);
-        setMessageError(false);
-        setSenderError(false);
-      }
-    }
+   
   };
 
+  const sendMail = () => { 
+     var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    var raw = JSON.stringify({
+      name: sender,
+      email: address,
+      message: message,
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+      fetch(`${serverURL}/sendmail`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => console.log(result))
+        .catch((error) => console.log('error', error.message));
+    }
+    
+  
   const classes = useStyles();
 
   return (
@@ -112,7 +131,7 @@ function Contact() {
                     required
                   />
                 </div>
-                {senderError ? <div id="error">Is it a real name?</div> : ''}
+                <div id="error">{senderError}</div>
 
                 <div>
                   <input
@@ -124,11 +143,8 @@ function Contact() {
                     required
                   />
                 </div>
-                {addressError ? (
-                  <div id="error">You must provide a valid email-address.</div>
-                ) : (
-                  ''
-                )}
+
+                <div id="error">{addressError}</div>
               </div>
 
               <div>
@@ -141,13 +157,8 @@ function Contact() {
                     required
                   />
                 </div>
-                {messageError ? (
-                  <div id="error">
-                    Your text must contain more than 10 characters.
-                  </div>
-                ) : (
-                  ''
-                )}
+
+                <div id="error">{messageError}</div>
               </div>
               <div id="submit">
                 <Button type="submit" variant="contained" color="secondary">

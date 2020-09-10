@@ -30,10 +30,16 @@ input[type='email'] {
 
 #error {
   margin-bottom: 2px;
-  font-size: small;
-  color: red;
+  text-align: center;
+  /* font-size: small;   */
+  /* font-weight: bolder; */
+  color:  #ff9999;
+  /* background-color: red; */
+  border-radius: 80%;
 
-  text-shadow: 1px 2px 2px rgba(1, 1, 1, 0.7);
+  text-shadow: 1px 1px 10px rgba(1,1,1 , 1);
+
+
 }
 #success {
   margin-top: 10px;
