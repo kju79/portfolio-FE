@@ -39,6 +39,7 @@ export default function Projects() {
               href="https://wbs-fitness.netlify.app"
               ALT="WBS Fitness App"
               target="_blank"
+  rel="noopener noreferrer"
             >
               <div className="ProjectCard">
                 <img src={wbsfit} alt="wbs fit" />
@@ -61,6 +62,7 @@ export default function Projects() {
               href="https://comicsawesome.netlify.app"
               ALT="Comics Awesome"
               target="_blank"
+  rel="noopener noreferrer"
             >
               <div className="ProjectCard">
                 <img src={comics} alt="comics awesome" />
@@ -84,6 +86,7 @@ export default function Projects() {
               href="https://wbs-videoplayer.netlify.app"
               ALT="WBS Fitness App"
               target="_blank"
+  rel="noopener noreferrer"
             >
               <div className="ProjectCard">
                 <img src={video} alt="videoplayer" />
@@ -105,6 +108,7 @@ export default function Projects() {
               href="https://kju79.github.io/geo-ip"
               ALT="Geo IP"
               target="_blank"
+  rel="noopener noreferrer"
             >
               {/* //wrapper */}
 
@@ -129,6 +133,7 @@ export default function Projects() {
               href="https://spacebeauty.netlify.app"
               ALT="Beautiful Space"
               target="_blank"
+  rel="noopener noreferrer"
             >
               <div className="ProjectCard">
                 <img src={space} alt="space" />
