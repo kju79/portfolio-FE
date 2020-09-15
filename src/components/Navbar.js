@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 // pls del this line
 
@@ -53,17 +54,19 @@ export default function MenuAppBar() {
           </Typography>
 
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div className={classes.items}>HOME</div>
             <div className={classes.items}>
-              <Button
-                variant="contained"
-                color="secondary"
-                href="#outlined-buttons"
-              >
-                <Typography variant="h6" className={classes.button}>
-                  contact
-                </Typography>
-              </Button>
+              <a href="." target="_SELF" id="home">
+                HOME
+              </a>
+            </div>
+            <div className={classes.items}>
+              <AnchorLink offset="50" href="#Contact">
+                <Button variant="contained" color="secondary">
+                  <Typography variant="h6" className={classes.button}>
+                    contact
+                  </Typography>
+                </Button>
+              </AnchorLink>
             </div>
           </div>
         </Toolbar>

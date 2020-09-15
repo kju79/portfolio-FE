@@ -1,0 +1,9 @@
+#home a,
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+#home a:active,
+a:hover {
+  color: rgb(0, 140, 255);
+}

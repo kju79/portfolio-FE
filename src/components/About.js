@@ -1,9 +1,10 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import '../css/home.css';
 
 export default function Knowledge() {
-
   return (
     <>
       <div className="container">
@@ -21,7 +22,9 @@ export default function Knowledge() {
               combine both sides, design and code. Looking forward to it.
             </div>
             <div id="HomeButton">
-              <Button variant="contained">Let's work together</Button>
+              <AnchorLink offset="50" href="#Contact">
+                <Button variant="contained">Let's work together</Button>
+              </AnchorLink>
             </div>
           </div>
           <div className="HomePicture"></div>

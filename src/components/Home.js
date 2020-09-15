@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dude from '../img/dude.png';
 import '../css/home.css';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+
 // pls del this line
 
 export default function Home() {
@@ -28,7 +30,9 @@ export default function Home() {
                 it covered.
               </div>
               <div id="HomeButton">
-                <Button variant="contained">Portfolio</Button>
+                <AnchorLink offset="50" href="#Projects">
+                  <Button variant="contained">Portfolio</Button>
+                </AnchorLink>
               </div>
             </div>
           </div>
