@@ -10,7 +10,6 @@ import Projects from './components/Projects.js';
 import Contact from './components/Contact.js';
 import theme from './components/UI/Theme';
 import { ThemeProvider } from '@material-ui/styles';
-import jump from 'jump.js';
 
 function App() {
   return (
