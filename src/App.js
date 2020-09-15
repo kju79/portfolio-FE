@@ -29,10 +29,10 @@ function App() {
 
           <About />
 
-          <div className="spacer" />
+          <div className="spacer" id="Projects" />
           <Projects />
 
-          <div className="spacer" />
+          <div className="spacer" id="Contact" />
           <Contact />
 
           <div className="spacer" />
