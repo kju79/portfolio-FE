@@ -11,6 +11,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    color: '#fff',
     flexGrow: 1,
     backgroundColor: 'primary.main',
   },
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
   },
   items: {
+    color: '#fff',
     flexGrow: 1,
     flexShrink: 1,
     fontFamily: 'Merriweather',
@@ -46,7 +48,7 @@ export default function MenuAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div id="home" className={classes.root}>
       <AppBar position="fixed">
         <Toolbar bgcolor="primary.main">
           <Typography variant="h6" className={classes.title}>
@@ -55,7 +57,7 @@ export default function MenuAppBar() {
 
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <div className={classes.items}>
-              <a href="." target="_SELF" id="home">
+              <a href="." target="_SELF">
                 HOME
               </a>
             </div>
