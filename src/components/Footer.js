@@ -10,10 +10,18 @@ export default function Footer() {
           <div id="FooterName">René Wildförster</div>
           <div id="FooterSocial">
             <div>
-              <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+              <a
+                href="https://www.linkedin.com/in/r-wildfoerster/"
+                ALT="LinkedIn"
+                target="_blank"
+              >
+                <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+              </a>
             </div>
             <div>
-              <i className="fa fa-github-square" aria-hidden="true"></i>
+              <a href="https://github.com/kju79/" ALT="GitHub" target="_blank">
+                <i className="fa fa-github-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
           <div id="FooterCopy">© 2020</div>

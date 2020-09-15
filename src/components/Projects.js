@@ -18,6 +18,7 @@ export default function Projects() {
 
           <div id="FlexRow">
             {/* //wrapper */}
+
             <div className="ProjectCard">
               <img src={rohrfuchs} alt="rohrfuchs" />
               {/* // overlay */}
@@ -34,82 +35,113 @@ export default function Projects() {
               </div>
             </div>
 
-            <div className="ProjectCard">
-              <img src={wbsfit} alt="wbs fit" />
-              {/* // overlay */}
-              <div className="ProjectCardOverlay">
-                {/* //content */}
-                <div className="ProjectCardContent">
-                  <h3>wbs fit</h3>
-                  <span>
-                    ReactJS, express (node.js)
-                    <br />
-                    mongoDB, CSS
-                  </span>
+            <a
+              href="https://wbs-fitness.netlify.app"
+              ALT="WBS Fitness App"
+              target="_blank"
+            >
+              <div className="ProjectCard">
+                <img src={wbsfit} alt="wbs fit" />
+                {/* // overlay */}
+                <div className="ProjectCardOverlay">
+                  {/* //content */}
+                  <div className="ProjectCardContent">
+                    <h3>wbs fit</h3>
+                    <span>
+                      ReactJS, express (node.js)
+                      <br />
+                      mongoDB, CSS
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
-            <div className="ProjectCard">
-              <img src={comics} alt="comics awesome" />
-              {/* // overlay */}
-              <div className="ProjectCardOverlay">
-                {/* //content */}
-                <div className="ProjectCardContent">
-                  <h3>Comics Awesome</h3>
+            <a
+              href="https://comicsawesome.netlify.app"
+              ALT="Comics Awesome"
+              target="_blank"
+            >
+              <div className="ProjectCard">
+                <img src={comics} alt="comics awesome" />
+                {/* // overlay */}
+                <div className="ProjectCardOverlay">
+                  {/* //content */}
+                  <div className="ProjectCardContent">
+                    <h3>Comics Awesome</h3>
 
-                  <span>
-                    ReactJS, express (node.js)
-                    <br />
-                    mongoDB, materialUI, CSS
-                  </span>
+                    <span>
+                      ReactJS, express (node.js)
+                      <br />
+                      mongoDB, materialUI, CSS
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
-            <div className="ProjectCard">
-              <img src={video} alt="videoplayer" />
-              {/* // overlay */}
-              <div className="ProjectCardOverlay">
-                {/* //content */}
-                <div className="ProjectCardContent">
-                  <h3>videoplayer</h3>
-                  <span>
-                    reactJS, JavaScript,
-                    <br /> HTML, CSS
-                  </span>
+            <a
+              href="https://wbs-videoplayer.netlify.app"
+              ALT="WBS Fitness App"
+              target="_blank"
+            >
+              <div className="ProjectCard">
+                <img src={video} alt="videoplayer" />
+                {/* // overlay */}
+                <div className="ProjectCardOverlay">
+                  {/* //content */}
+                  <div className="ProjectCardContent">
+                    <h3>videoplayer</h3>
+                    <span>
+                      reactJS, JavaScript,
+                      <br /> HTML, CSS
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
-            {/* //wrapper */}
-            <div className="ProjectCard">
-              <img src={geoip} alt="geo ip" />
-              {/* // overlay */}
-              <div className="ProjectCardOverlay">
-                {/* //content */}
-                <div className="ProjectCardContent">
-                  <h3>geo ip</h3>
-                  <span>
-                    reactJS, API,
-                    <br />
-                    CSS, HTML
-                  </span>
+            <a
+              href="https://kju79.github.io/geo-ip"
+              ALT="Geo IP"
+              target="_blank"
+            >
+              {/* //wrapper */}
+
+              <div className="ProjectCard">
+                <img src={geoip} alt="geo ip" />
+                {/* // overlay */}
+                <div className="ProjectCardOverlay">
+                  {/* //content */}
+                  <div className="ProjectCardContent">
+                    <h3>geo ip</h3>
+                    <span>
+                      reactJS, API,
+                      <br />
+                      CSS, HTML
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
-            <div className="ProjectCard">
-              <img src={space} alt="space" />
-              {/* // overlay */}
-              <div className="ProjectCardOverlay">
-                {/* //content */}
-                <div className="ProjectCardContent">
-                  <h3>space view</h3>
-                  <span>reactJS, CSS, API</span>
+            <a
+              href="https://spacebeauty.netlify.app"
+              ALT="Beautiful Space"
+              target="_blank"
+            >
+              <div className="ProjectCard">
+                <img src={space} alt="space" />
+                {/* // overlay */}
+                <div className="ProjectCardOverlay">
+                  {/* //content */}
+                  <div className="ProjectCardContent">
+                    <h3>space view</h3>
+                    <span>reactJS, CSS, API</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
