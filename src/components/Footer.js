@@ -14,12 +14,13 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/r-wildfoerster/"
                 ALT="LinkedIn"
                 target="_blank"
+    rel="noopener noreferrer"
               >
-                <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+                <i className="fa fa-linkedin-square" aria-hidden="true" ></i>
               </a>
             </div>
             <div>
-              <a href="https://github.com/kju79/" ALT="GitHub" target="_blank">
+              <a href="https://github.com/kju79/" ALT="GitHub" target="_blank" rel="noopener noreferrer">
                 <i className="fa fa-github-square" aria-hidden="true"></i>
               </a>
             </div>
