@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "animate.css": "^4.1.0",
     "aos": "^2.3.4",
+    "jump.js": "^1.0.2",
     "react": "^16.13.1",
     "react-animations": "^1.0.0",
     "react-customizable-progressbar": "^1.0.1",
@@ -18,7 +19,7 @@
     "react-flipcard": "^0.2.1",
     "react-flippy": "^0.1.5",
     "react-lazyload": "^2.6.8",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-transition-group": "^4.4.1"
   },
   "scripts": {
